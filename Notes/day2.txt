@@ -1,0 +1,34 @@
+define dictionary:
+
+a={'name':['Nithin','Michael'],'age':29,'Address':'PVR K app','state':'KA'}
+
+To remove value from dict use del
+
+del a.['name']
+
+or to display te value a then delete use
+
+
+a.pop('name',None)
+
+To add value:
+
+a['PIN']=560037
+
+
+a={'name': ['Nithin', 'Michael'], 'age': 29, 'Address': 'PVR K app', 'state': 'KA', 'PIN': 560037}
+
+>>> a={'name': ['Nithin', 'Michael'], 'age': 29, 'Address': 'PVR K app', 'state': 'KA', 'PIN': 560037}
+>>> a['name']={'Lastname':'Michael','Firstname':'Nithin'}
+>>> a
+{'name': {'Lastname': 'Michael', 'Firstname': 'Nithin'}, 'age': 29, 'Address': 'PVR K app', 'state': 'KA', 'PIN': 560037}
+>>> 
+
+
+=====================================
+Functions
+=====================================
+
+def functionname(a,b):
+	c=a+b
+	return c
