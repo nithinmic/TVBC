@@ -19,17 +19,16 @@ def cont():
 @app.route("/login", methods =['GET','POST'])
 def login():
 	if request.method=='POST':
-		nithin={'uname':'nithin','pwd':'12345'}
 		uname=request.form['username']
 		pwd=request.form['password']
-		if nithin['uname']==uname and nithin['pwd']==pwd:
-			session['username']=uname
+		result=log_user(uname)
+		if pwd==result['pwd']:
+			session['username']=result['username']
+			session['type']=result['ctype']
 			return redirect(url_for('home'))
-		else:
-			return redirect(url_for('home'))
-	else:
-		return redirect(url_for('home'))
+		return "Please enter correct correct password!"
 
+	return redirect(url_for('home'))
 @app.route('/signup', methods =['GET','POST'])
 def signup():
 	if request.method=='POST':
