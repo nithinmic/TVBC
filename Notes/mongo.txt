@@ -1,0 +1,67 @@
+under mongodb create a folder 
+create a directory
+data
+log
+
+
+under data create db folder
+
+
+cd mongodb/bin
+
+mongod --directoryperdb --dbpath c:/mongodb/data/db --logpath /mongodb/log/mongo.log --logappend --rest --install
+
+net start MongoDB
+
+
+mongo
+
+show dbs ==>shows the available db
+use mycustomers ==>to create a db with the name mycustomers
+db ==> to show db name
+
+to create a user:
+=================
+db.createUser({
+user:"nithin",
+pwd:"1234",
+roles: ["readWrite","dbAdmin"
+});
+==============
+
+to create collection:
+================
+db.createCollection("customers")
+======================
+
+to view all the collection
+====================
+show collections
+===================
+
+to insert
+================
+db.customers.insert({first_name: "Nithin", last_name:"Michael",gender:"Male});
+
+db.customers.insert([{first_name: "Michael", last_name:"Jackson"},{first_name: "Rajini", last_name:"Kanth"}]);
+=======================
+
+db.customers.find();
+
+===========
+
+to insert multiple records as well new fields
+==================================
+
+
+
+
+
+db.customers.insert({	first_name:"Nithin",
+	last_name:"Michael"
+	mempership:  ["mem1", "mem2"],
+	address:
+	{street:"4th main st",city:"bengaluru"}
+	contacts:[{name:"Brad", relationshsip:"friend"}]
+});
+
