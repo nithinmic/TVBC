@@ -9,19 +9,6 @@
 <p> As part of my project at vally</p>
 {% if not session['username'] %}
 <p>Welcome Guest User!</p>
-<h2>Sign up</h2>
-<form action="/signup" method="post" id="form2">
-	<input type="text" placeholder="Username" name="username"><br>
-	<input type="text" placeholder="Email" name="email"><br>
-	<input type="password" placeholder="Password" name="password"><br>
-	<input type="password" placeholder="Re-enter Password" name="password2"><br>
-	<input type="radio" name="ctype" value="buyer">Buyer<br>
-	<input type="radio" name="ctype" value="seller">Seller<br>
-</form>
-<button type="submit" form="form2" value="Submit">Submit</button>
-<br>
-<br>
-
 <h2>Sign in</h2>
 <form action="/login" method="post" id="form1">
 	<input type="text" placeholder="Username" name="username"><br>
@@ -29,6 +16,7 @@
 </form>
 <button type="submit" form="form1" value="Submit">Submit</button>
 <br>
+<p> New customer? <a href="/signuppage"> Start here.</a></p>
 <br>
 <br>
 <br>

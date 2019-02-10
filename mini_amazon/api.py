@@ -16,6 +16,10 @@ def abt():
 def cont():
 	return render_template('contacts.html')
 
+@app.route("/signuppage")
+def signuppage():
+	return render_template('signup.html')
+
 @app.route("/login", methods =['GET','POST'])
 def login():
 	if request.method=='POST':
