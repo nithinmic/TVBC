@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Nithin's Amazon</title>
-</head>
-<body>
+{% extends "base.html" %}
+	{% block body %} 
 <h1>Welcome to amazon</h1>
 <h2> this is build by nithin</h2>
 <p> As part of my project at vally</p>
@@ -23,10 +19,5 @@
 <br>
 {% else %}
 <p>Welcome {{ session['username'] }}!</p>
-<a href="/logout"> Log out</a>
 {% endif %}
-<br>
-<br>
-<p> <a href="/about"> About us</a>   <a href="/contact"> Contact</a></p>
-</body>
-</html>
+{% endblock body %}

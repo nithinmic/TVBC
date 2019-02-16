@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>Welcome to amazon</h1>
+<h2>Please enter the product details</h2>
+<form action="/add_products" method="post" id="form3">
+	<input type="text" placeholder="Product Name" name="pname"><br>
+	<input type="text" placeholder="Product Description" name="pdescription"><br>
+	<input type="text" placeholder="Price" name="pprice"><br>
+</form>
+<button type="submit" form="form3" value="Submit">Submit</button>
+<br>
+<br>
+<br>
+<a href="/"> HOME</a>	
+{% endblock body %}

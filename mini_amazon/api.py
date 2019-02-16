@@ -12,6 +12,10 @@ def home():
 def abt():
 	return render_template('about.html')
 
+@app.route("/welcome")
+def welcome():
+	return render_template('welcome.html')
+
 @app.route("/contact")
 def cont():
 	return render_template('contacts.html')
@@ -25,12 +29,14 @@ def login():
 	if request.method=='POST':
 		uname=request.form['username']
 		pwd=request.form['password']
-		result=log_user(uname)
-		if pwd==result['pwd']:
-			session['username']=result['username']
-			session['type']=result['ctype']
-			return redirect(url_for('home'))
-		return "Please enter correct correct password!"
+		if check_user(uname):
+			result=log_user(uname)
+			if pwd==result['pwd']:
+				session['username']=result['username']
+				session['type']=result['ctype']
+				return render_template('welcome.html')
+			return "Please enter correct password!"
+		return "User dosn't exist!"
 
 	return redirect(url_for('home'))
 @app.route('/signup', methods =['GET','POST'])
@@ -57,5 +63,36 @@ def signup():
 def logout():
 	session.clear()
 	return redirect(url_for('home'))
+
+@app.route('/add_products', methods= ['GET','POST'])
+def add_products():
+	if request.method =='POST':
+		product_info={}
+		product_info['pname']=request.form['pname']
+		product_info['pdescription']=request.form['pdescription']
+		product_info['pprice']=int(request.form['pprice'])
+		product_info['sellername']=session['username']
+
+		if check_product(product_info['pname']):
+			return "product Already exist"
+		create_product(product_info)
+		return redirect(url_for('welcome'))
+	return render_template('add_products.html')
+
+@app.route('/buyer_products')
+def b_products():
+	products=buyer_products()
+	return render_template('products.html',products=products)
+
+@app.route('/seller_products')
+def sell_products():
+	products=seller_products(session['username'])
+	return render_template('products.html',products=products)
+
+@app.route('/add_cart', methods=['POST'])
+def add_tocart():
+	product_id=request.form['product_id']
+	update_cart(product_id,session['username'])
+	return redirect(url_for('welcome'))
 
 app.run(debug=True)

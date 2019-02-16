@@ -53,7 +53,7 @@ db.customers.find();
 to insert multiple records as well new fields
 ==================================
 
-
+	
 
 
 
@@ -65,3 +65,11 @@ db.customers.insert({	first_name:"Nithin",
 	contacts:[{name:"Brad", relationshsip:"friend"}]
 });
 
+
+
+db.products.update(    {pname:"RE Thunderbird 500"}, { $set : { sellername: "nithinmic1"}});
+
+
+db.products.update( {}, { $set : { sellername: "nithinmic1"}});{upsert:false,multi:true}
+
+db.users.update( { pname:"RE Thunderbird 500"}, { $set : { sellername: "nithinmic1"}});{upsert:false,multi:true}

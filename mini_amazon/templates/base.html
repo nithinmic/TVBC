@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Amazon</title>
+</head>
+<body>
+	<p>Wecome to amazon</p>
+	{% block body %} {% endblock body %}
+
+	{% if session %}
+	<footer><a href="/logout">Logout</a></footer>
+	{% endif %}
+	<footer><p> <a href="/about"> About us</a>   <a href="/contact"> Contact</a></p>
+	Copyright @2019 Nithin Michael & Co </footer>
+</body>
+</html>
