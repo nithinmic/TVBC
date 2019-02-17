@@ -1,0 +1,9 @@
+api key: 2012951d8cf61a1516d510cc4f741721
+
+
+
+https://api.openweathermap.org/data/2.5/weather?appid=2012951d8cf61a1516d510cc4f741721&q=mumbai
+
+
+
+https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=2012951d8cf61a1516d510cc4f741721

@@ -7,14 +7,10 @@ app.config['SECRET_KEY'] = 'hello'
 @app.route("/")
 def home():
     return render_template('home.html')
-
+ 
 @app.route("/about")
 def abt():
 	return render_template('about.html')
-
-@app.route("/welcome")
-def welcome():
-	return render_template('welcome.html')
 
 @app.route("/contact")
 def cont():
@@ -34,7 +30,7 @@ def login():
 			if pwd==result['pwd']:
 				session['username']=result['username']
 				session['type']=result['ctype']
-				return render_template('welcome.html')
+				return redirect(url_for('home'))
 			return "Please enter correct password!"
 		return "User dosn't exist!"
 
@@ -50,6 +46,8 @@ def signup():
 		user_info['pwd']=request.form['password']
 		rpwd=request.form['password2']
 		user_info['ctype']=request.form['ctype']
+		if user_info['ctype'] == 'buyer':
+			user_info['cart']={}
 		if check_user(user_info['username']) is False:
 			if rpwd==user_info['pwd']:
 				create_user(user_info)
@@ -76,7 +74,7 @@ def add_products():
 		if check_product(product_info['pname']):
 			return "product Already exist"
 		create_product(product_info)
-		return redirect(url_for('welcome'))
+		return redirect(url_for('home'))
 	return render_template('add_products.html')
 
 @app.route('/buyer_products')
@@ -93,6 +91,12 @@ def sell_products():
 def add_tocart():
 	product_id=request.form['product_id']
 	update_cart(product_id,session['username'])
-	return redirect(url_for('welcome'))
+	return redirect(url_for('cart'))
+
+@app.route("/cart")
+def cart():
+	# import pdb; pdb.set_trace()
+	products=cart_page(session['username'])
+	return render_template('cart_page.html',products=products)
 
 app.run(debug=True)

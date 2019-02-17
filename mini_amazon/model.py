@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 client = MongoClient()
 db=client['mini_amazon']
@@ -36,12 +37,17 @@ def seller_products(seller):
 	results=db['products'].find(query)
 	return results
 
-
 def update_cart(product_id,username):
+	db['users'].update( { "username":username}, { "$addToSet" : { "cart": {"$each":[product_id]}}})
+
+def cart_page(username):
 	query={"username":username}
 	results=db['users'].find_one(query)
-	if results.get(cart):
-		db.['users'].update( { "username":username}, { "$addToSet" : { cart: {"$each":[product_id]}}})
-	else:
-		db.['users'].update( { "username":username}, { "$set" : { cart: product_id}})
-	return results
+	product_ids=results['cart']
+
+	products=[]
+	for product_id in product_ids:
+		query={"_id":ObjectId(product_id)}
+		results=db['products'].find_one(query)
+		products.append(results)
+	return products

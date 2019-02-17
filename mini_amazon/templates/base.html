@@ -3,14 +3,14 @@
 <head>
 	<title>My Amazon</title>
 </head>
-<body>
+<body bgcolor="#E6E6FA">
 	<p>Wecome to amazon</p>
 	{% block body %} {% endblock body %}
 
 	{% if session %}
 	<footer><a href="/logout">Logout</a></footer>
 	{% endif %}
-	<footer><p> <a href="/about"> About us</a>   <a href="/contact"> Contact</a></p>
+	<footer><p> <a href="/"> Homepage</a><a href="/about"> About us</a>   <a href="/contact"> Contact</a></p>
 	Copyright @2019 Nithin Michael & Co </footer>
 </body>
 </html>

@@ -72,4 +72,7 @@ db.products.update(    {pname:"RE Thunderbird 500"}, { $set : { sellername: "nit
 
 db.products.update( {}, { $set : { sellername: "nithinmic1"}});{upsert:false,multi:true}
 
-db.users.update( { pname:"RE Thunderbird 500"}, { $set : { sellername: "nithinmic1"}});{upsert:false,multi:true}
+db.users.update( { pname:}, { $set : { sellername: "nithinmic1"}});{upsert:false,multi:true}
+
+
+db.users.update( { }, { $pull: { cart: { $in: [ "5c67c0dcf048cd3ea111caa3", "5c67d582f048cd4358e3452e" ] }}}, { multi: true })
