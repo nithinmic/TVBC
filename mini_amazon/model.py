@@ -28,6 +28,9 @@ def check_product(pname):
 def create_product(product_info):
 	db['products'].insert_one(product_info)
 
+def remove_product(product_id):
+	db['products'].remove({"_id":"ObjectId("product_id")"})
+
 def buyer_products():
 	results=db['products'].find({})
 	return results
@@ -40,11 +43,13 @@ def seller_products(seller):
 def update_cart(product_id,username):
 	db['users'].update( { "username":username}, { "$addToSet" : { "cart": {"$each":[product_id]}}})
 
+def remove_from_cart(username,product_id):
+    db['users'].update({"username":username},{"$pull":{"cart":product_id}})
+
 def cart_page(username):
 	query={"username":username}
 	results=db['users'].find_one(query)
 	product_ids=results['cart']
-
 	products=[]
 	for product_id in product_ids:
 		query={"_id":ObjectId(product_id)}

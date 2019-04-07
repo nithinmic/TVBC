@@ -77,6 +77,12 @@ def add_products():
 		return redirect(url_for('home'))
 	return render_template('add_products.html')
 
+@app.route('/remove_product', methods= ['GET','POST'])
+def remove_products():
+	product_id=request.form['product_id']
+	remove_product(product_id)
+	return redirect(url_for('seller_products'))
+
 @app.route('/buyer_products')
 def b_products():
 	products=buyer_products()
@@ -98,5 +104,11 @@ def cart():
 	# import pdb; pdb.set_trace()
 	products=cart_page(session['username'])
 	return render_template('cart_page.html',products=products)
+
+@app.route('/remove_cart',methods=['POST'])
+def remove_cart():
+    product_id=request.form['product_id']
+    remove_from_cart(session['username'],product_id)
+    return(redirect(url_for('cart')))
 
 app.run(debug=True)

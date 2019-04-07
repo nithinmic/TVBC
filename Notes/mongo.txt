@@ -76,3 +76,7 @@ db.users.update( { pname:}, { $set : { sellername: "nithinmic1"}});{upsert:false
 
 
 db.users.update( { }, { $pull: { cart: { $in: [ "5c67c0dcf048cd3ea111caa3", "5c67d582f048cd4358e3452e" ] }}}, { multi: true })
+
+
+
+b.invoice.remove( { ord_qty: { $lt: 200 } } );
